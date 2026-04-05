@@ -1,2 +1,0 @@
-# DetectionArray.msg
-BoundingBox[] boxes
