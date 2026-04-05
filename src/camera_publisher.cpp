@@ -1,3 +1,6 @@
+Нода 1: Camera Publisher (Издатель камеры)
+Создайте файл src/camera_publisher.cpp в вашем пакете my_cv_pkg:
+
 #include <chrono>
 #include <memory>
 #include "rclcpp/rclcpp.hpp"
