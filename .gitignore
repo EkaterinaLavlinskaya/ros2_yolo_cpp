@@ -1,0 +1,30 @@
+
+cat > ~/ros2_ws/src/.gitignore << 'EOF'
+# Build files
+build/
+install/
+log/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.bak
+
+# Compiled files
+*.o
+*.so
+*.a
+
+# Python cache
+__pycache__/
+*.pyc
+EOF
