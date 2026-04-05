@@ -1,4 +1,5 @@
 Нода 1: Camera Publisher (Издатель камеры)
+Этот код открывает веб-камеру и публикует кадры в топик /camera/image_raw
 Создайте файл src/camera_publisher.cpp в вашем пакете my_cv_pkg:
 
 #include <chrono>
