@@ -1,0 +1,26 @@
+# Исполняемые файлы
+add_executable(camera_publisher src/camera_publisher.cpp)
+ament_target_dependencies(camera_publisher 
+    rclcpp 
+    cv_bridge 
+    image_transport 
+    OpenCV
+    sensor_msgs
+)
+
+add_executable(yolo_detector src/yolo_detector.cpp)
+ament_target_dependencies(yolo_detector 
+    rclcpp 
+    cv_bridge 
+    image_transport 
+    OpenCV
+    sensor_msgs
+)
+target_link_libraries(yolo_detector ${TORCH_LIBRARIES})
+
+# Установка
+install(TARGETS 
+    camera_publisher 
+    yolo_detector
+    DESTINATION lib/${PROJECT_NAME}
+)
