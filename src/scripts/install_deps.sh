@@ -1,4 +1,6 @@
-
+mkdir -p ~/ros2_ws/src/scripts
+cat > ~/ros2_ws/src/scripts/install_deps.sh << 'EOF'
+#!/bin/bash
 
 echo "Installing dependencies for ROS2 YOLO project..."
 
