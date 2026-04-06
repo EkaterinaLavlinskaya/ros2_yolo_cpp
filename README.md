@@ -96,7 +96,9 @@ ros2 launch my_cv_pkg demo.launch.py
 https://img.youtube.com/vi/%D0%B2%D0%B0%D1%88%D0%B5_%D0%B2%D0%B8%D0%B4%D0%B5%D0%BE/0.jpg
 
 📁 Архитектура системы
-text
+
+
+
 camera_publisher → /camera/image_raw → fake_detector → /detected_objects → visualizer
                                           ↓
                                     (публикует фейковый
