@@ -1,31 +1,3 @@
-# ROS2 YOLO Object Detection Pipeline
-
-[![ROS2](https://img.shields.io/badge/ROS2-Jazzy-blue)](https://docs.ros.org/en/jazzy/)
-[![C++](https://img.shields.io/badge/C++-17-blue)](https://isocpp.org/)
-
-🚀 Быстрый запуск
-
-# Запуск всех узлов одной командой
-ros2 launch my_cv_pkg demo.launch.py
-
-🎥 Демонстрация
-test_video.avi
-
-📁 Архитектура системы
-
-
-
-camera_publisher → /camera/image_raw → fake_detector → /detected_objects → visualizer
-                                          ↓
-                                    (публикует фейковый
-                                     bounding box в центре)
-🎯 Что показывает визуализатор
-- Зелёная рамка в центре кадра
-
-- Текст с именем объекта и уверенностью
-
-- Красная точка в центре объекта
-
 
 [![ROS2](https://img.shields.io/badge/ROS2-Jazzy-blue)](https://docs.ros.org/en/jazzy/)
 [![C++](https://img.shields.io/badge/C++-17-blue)](https://isocpp.org/)
@@ -83,6 +55,34 @@ ros2 run my_cv_pkg image_subscriber
 Просмотр топиков
 ros2 topic list
 ros2 topic echo /camera/image_raw --once
+
+# ROS2 YOLO Object Detection Pipeline
+
+[![ROS2](https://img.shields.io/badge/ROS2-Jazzy-blue)](https://docs.ros.org/en/jazzy/)
+[![C++](https://img.shields.io/badge/C++-17-blue)](https://isocpp.org/)
+
+🚀 Быстрый запуск
+
+# Запуск всех узлов одной командой
+ros2 launch my_cv_pkg demo.launch.py
+
+🎥 Демонстрация
+test_video.avi
+
+📁 Архитектура системы
+
+
+
+camera_publisher → /camera/image_raw → fake_detector → /detected_objects → visualizer
+                                          ↓
+                                    (публикует фейковый
+                                     bounding box в центре)
+🎯 Что показывает визуализатор
+- Зелёная рамка в центре кадра
+
+- Текст с именем объекта и уверенностью
+
+- Красная точка в центре объекта
 
 
 📁 Структура пакетов
