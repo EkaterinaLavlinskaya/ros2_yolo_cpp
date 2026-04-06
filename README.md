@@ -1,128 +1,63 @@
 
-[![ROS2](https://img.shields.io/badge/ROS2-Jazzy-blue)](https://docs.ros.org/en/jazzy/)
-[![C++](https://img.shields.io/badge/C++-17-blue)](https://isocpp.org/)
-[![OpenCV](https://img.shields.io/badge/OpenCV-4.x-green)](https://opencv.org/)
-
-## 📋 Описание проекта
-
-Этот проект реализует пайплайн обнаружения объектов на C++ с использованием ROS2 Jazzy и YOLO. 
-Система состоит из трёх основных узлов:
-
-- **camera_publisher** — публикует изображения с камеры или из файла в топик `/camera/image_raw`
-- **image_subscriber** — подписывается на изображения и отображает их (для отладки)
-- **yolo_detector** — (в разработке) детектирует объекты с помощью YOLO
-
-## 🏗️ Архитектура
-┌─────────────────┐ ┌─────────────────┐ ┌─────────────────┐
-│ camera_publisher │────▶│ /camera/image_raw │────▶│ image_subscriber │
-└─────────────────┘ └─────────────────┘ └─────────────────┘
-│ │
-▼ ▼
-(WebCam/File) (OpenCV Window)
-
-
-
-## 📦 Требования
-
-- Ubuntu 24.04 (Noble) или новее
-- ROS2 Jazzy
-- OpenCV 4.x
-- cv_bridge
-
-## 🔧 Установка
-
-### 1. Клонируйте репозиторий
-mkdir -p ~/ros2_ws/src
-cd ~/ros2_ws/src
-git clone https://github.com/YOUR_USERNAME/ros2_yolo_cpp.git
-
-2. Установите зависимости
-sudo apt update
-sudo apt install ros-jazzy-cv-bridge libopencv-dev
-
-3. Соберите workspace
-cd ~/ros2_ws
-colcon build --packages-select my_msgs my_cv_pkg
-source install/setup.bash
-
-🚀 Запуск
-Запуск издателя камеры
-ros2 run my_cv_pkg camera_publisher
-
-Запуск подписчика (отображение изображений)
-ros2 run my_cv_pkg image_subscriber
-
-Просмотр топиков
-ros2 topic list
-ros2 topic echo /camera/image_raw --once
-
-
-
 # ROS2 YOLO Object Detection Pipeline
 
 [![ROS2](https://img.shields.io/badge/ROS2-Jazzy-blue)](https://docs.ros.org/en/jazzy/)
 [![C++](https://img.shields.io/badge/C++-17-blue)](https://isocpp.org/)
+[![OpenCV](https://img.shields.io/badge/OpenCV-4.x-green)](https://opencv.org/)
 
-🚀 Быстрый запуск
+## 🎥 Демонстрация работы
+
+[![Демо работы пайплайна](test_video.gif)
+
+*Нажмите на скриншот, чтобы открыть видео. На видео: запуск пайплайна, работа фейкового детектора и визуализация.*
+
+## 🚀 Быстрый запуск
+
+# Сборка
+cd ~/ros2_ws
+colcon build --packages-select my_msgs my_cv_pkg
+source install/setup.bash
 
 # Запуск всех узлов одной командой
 ros2 launch my_cv_pkg demo.launch.py
 
-🎥 Демонстрация
-test_video.avi
-
-📁 Архитектура системы
-
-
+🏗️ Архитектура
 
 camera_publisher → /camera/image_raw → fake_detector → /detected_objects → visualizer
                                           ↓
                                     (публикует фейковый
                                      bounding box в центре)
-🎯 Что показывает визуализатор
-- Зелёная рамка в центре кадра
+🎯 Что вы увидите при запуске
+Зелёная рамка в центре кадра (имитация детекции)
 
-- Текст с именем объекта и уверенностью
+Текст "Fake Object (0.95)" над рамкой
 
-- Красная точка в центре объекта
+Красная точка в центре объекта
 
+Примечание: на видео используется фейковый детектор для демонстрации пайплайна. Интеграция реального YOLO — в планах.
 
-📁 Структура пакетов
+📁 Структура проекта
 
 ros2_yolo_cpp/
-│
-├── README.md                          # Описание проекта
-├── .gitignore                         # Игнорируемые файлы
-│
-├── my_msgs/                           # Пакет с кастомными сообщениями
-│   ├── msg/
-│   │   ├── BoundingBox.msg
-│   │   └── DetectionArray.msg
-│   ├── CMakeLists.txt
-│   └── package.xml
-│
-└── my_cv_pkg/                         # Основной пакет
+├── my_msgs/                    # Кастомные сообщения
+│   └── msg/
+│       ├── BoundingBox.msg
+│       └── DetectionArray.msg
+└── my_cv_pkg/                  # Основной пакет
     ├── launch/
-    │   └── demo.launch.py             # Launch-файл для запуска всех нод
-    ├── src/
-    │   ├── camera_publisher.cpp       # Публикация кадров (видео/камера)
-    │   ├── fake_detector.cpp          # Фейковый детектор
-    │   └── visualizer.cpp             # Визуализация с рамкой
-    ├── CMakeLists.txt
-    └── package.xml
-📝 Лицензия
-Apache 2.0
+    │   └── demo.launch.py
+    └── src/
+        ├── camera_publisher.cpp
+        ├── fake_detector.cpp
+        └── visualizer.cpp
+🚧 Планы
+Интеграция YOLO с LibTorch
+
+Добавление ноды controller_node
+
+Поддержка видеофайлов
 
 👤 Автор
 Ekaterina Lavlinskaya
 
-🚧 Планы
-- Интеграция YOLO с LibTorch
-
-- Добавление ноды controller_node
-
-- Launch-файл для автоматического запуска
-
-- Поддержка видеофайлов
-- EOF
-
+📝 Лицензия: Apache 2.0
