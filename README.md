@@ -77,11 +77,33 @@ Apache 2.0
 Ekaterina Lavlinskaya
 
 🚧 Планы
-Интеграция YOLO с LibTorch
+- Интеграция YOLO с LibTorch
 
-Добавление ноды controller_node
+- Добавление ноды controller_node
 
-Launch-файл для автоматического запуска
+- Launch-файл для автоматического запуска
 
-Поддержка видеофайлов
-EOF
+- Поддержка видеофайлов
+- EOF
+
+
+🚀 Быстрый запуск
+
+# Запуск всех узлов одной командой
+ros2 launch my_cv_pkg demo.launch.py
+
+🎥 Демонстрация
+https://img.youtube.com/vi/%D0%B2%D0%B0%D1%88%D0%B5_%D0%B2%D0%B8%D0%B4%D0%B5%D0%BE/0.jpg
+
+📁 Архитектура системы
+text
+camera_publisher → /camera/image_raw → fake_detector → /detected_objects → visualizer
+                                          ↓
+                                    (публикует фейковый
+                                     bounding box в центре)
+🎯 Что показывает визуализатор
+- Зелёная рамка в центре кадра
+
+- Текст с именем объекта и уверенностью
+
+- Красная точка в центре объекта
